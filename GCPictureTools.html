@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module GCPictureTools</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">GCPictureTools</strong></td>
+</tr></table>
+    <p><span class="code">File&nbsp;Name:&nbsp;GCPictureTools.py<br>
+Date:&nbsp;2024-08-01<br>
+Description:&nbsp;provide&nbsp;functions&nbsp;to&nbsp;work&nbsp;with&nbsp;pictures&nbsp;based&nbsp;on&nbsp;pygame&nbsp;package<br>
+&nbsp;<br>
+Improvement&nbsp;Log<br>
+2024-10-3:&nbsp;add&nbsp;display&nbsp;method&nbsp;to&nbsp;show&nbsp;the&nbsp;picture&nbsp;until&nbsp;user&nbsp;closes&nbsp;the&nbsp;window.<br>
+2024-10-27:&nbsp;add&nbsp;<a href="#Pixel">Pixel</a>&nbsp;class;&nbsp;add&nbsp;save&nbsp;method&nbsp;in&nbsp;<a href="#Picture">Picture</a>&nbsp;class&nbsp;to&nbsp;save&nbsp;image&nbsp;into&nbsp;a&nbsp;file<br>
+2025-07-24:&nbsp;minor&nbsp;typo&nbsp;fixes,&nbsp;update&nbsp;on&nbsp;Github,&nbsp;add&nbsp;Makefile</span></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="pygame.html">pygame</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="GCPictureTools.html#Picture">Picture</a>
+</dt><dt class="heading-text"><a href="GCPictureTools.html#Pixel">Pixel</a>
+</dt><dt class="heading-text"><a href="GCPictureTools.html#autoUpdate">autoUpdate</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="Picture">class <strong>Picture</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#Picture">Picture</a>(*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="Picture-__init__"><strong>__init__</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">Initializer<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;If&nbsp;none,&nbsp;then&nbsp;make&nbsp;picture&nbsp;with&nbsp;default&nbsp;size&nbsp;(100&nbsp;x&nbsp;100)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;color&nbsp;(white)<br>
+&nbsp;&nbsp;If&nbsp;one&nbsp;string&nbsp;parameter&nbsp;-&nbsp;filename&nbsp;or&nbsp;path&nbsp;to&nbsp;a&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;make&nbsp;a&nbsp;picture&nbsp;made&nbsp;from&nbsp;this&nbsp;file<br>
+&nbsp;&nbsp;If&nbsp;one&nbsp;image&nbsp;parameter&nbsp;-&nbsp;pre-existing&nbsp;image&nbsp;to&nbsp;clone<br>
+&nbsp;&nbsp;&nbsp;&nbsp;make&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;input&nbsp;picture<br>
+&nbsp;&nbsp;If&nbsp;two&nbsp;integer&nbsp;parameters&nbsp;-&nbsp;assume&nbsp;these&nbsp;are&nbsp;width&nbsp;and&nbsp;height<br>
+&nbsp;&nbsp;&nbsp;&nbsp;make&nbsp;a&nbsp;picture&nbsp;with&nbsp;given&nbsp;size&nbsp;and&nbsp;default&nbsp;color&nbsp;(white)<br>
+&nbsp;&nbsp;If&nbsp;third&nbsp;parameter&nbsp;-&nbsp;a&nbsp;color&nbsp;as&nbsp;string&nbsp;(default:&nbsp;"white")<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-addLine"><strong>addLine</strong></a>(self, acolor, x1, y1, x2, y2, width=1)</dt><dd><span class="code">Draws&nbsp;a&nbsp;line&nbsp;onto&nbsp;a&nbsp;given&nbsp;surface<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;acolor&nbsp;(Color)&nbsp;-&nbsp;color&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;x1&nbsp;(int)&nbsp;-&nbsp;beginning&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;y1&nbsp;(int)&nbsp;-&nbsp;beginning&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;x2&nbsp;(int)&nbsp;-&nbsp;ending&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;y2&nbsp;(int)&nbsp;-&nbsp;ending&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;&nbsp;width&nbsp;(int)&nbsp;-&nbsp;thickness&nbsp;of&nbsp;the&nbsp;line<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-addOval"><strong>addOval</strong></a>(self, width, height, x, y, acolor='red', linew=1)</dt><dd><span class="code">Draws&nbsp;an&nbsp;oval&nbsp;onto&nbsp;a&nbsp;given&nbsp;surface<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;width&nbsp;(int)&nbsp;-&nbsp;width&nbsp;of&nbsp;the&nbsp;oval&nbsp;(in&nbsp;pixels)<br>
+&nbsp;&nbsp;height&nbsp;(int)&nbsp;-&nbsp;height&nbsp;of&nbsp;the&nbsp;oval&nbsp;(in&nbsp;pixels)<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;oval<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;oval<br>
+&nbsp;&nbsp;acolor&nbsp;(Color,&nbsp;int,&nbsp;str,&nbsp;tuple)&nbsp;-&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;oval<br>
+&nbsp;&nbsp;linew&nbsp;(int)&nbsp;-&nbsp;width&nbsp;of&nbsp;the&nbsp;outline&nbsp;of&nbsp;the&nbsp;oval<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-addOvalFilled"><strong>addOvalFilled</strong></a>(self, width, height, x, y, acolor='red')</dt><dd><span class="code">Draws&nbsp;a&nbsp;filled&nbsp;oval&nbsp;onto&nbsp;a&nbsp;given&nbsp;surface<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;width&nbsp;(int)&nbsp;-&nbsp;width&nbsp;of&nbsp;the&nbsp;oval&nbsp;(in&nbsp;pixels)<br>
+&nbsp;&nbsp;height&nbsp;(int)&nbsp;-&nbsp;height&nbsp;of&nbsp;the&nbsp;oval&nbsp;(in&nbsp;pixels)<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;oval<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;oval<br>
+&nbsp;&nbsp;acolor&nbsp;(Color,&nbsp;int,&nbsp;str,&nbsp;tuple)&nbsp;-&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;oval<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-addRect"><strong>addRect</strong></a>(self, width, height, x, y, acolor='red', linew=1)</dt><dd><span class="code">Draws&nbsp;a&nbsp;rectangle&nbsp;onto&nbsp;a&nbsp;given&nbsp;surface<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;width&nbsp;(int)&nbsp;-&nbsp;width&nbsp;of&nbsp;the&nbsp;rectangle&nbsp;(in&nbsp;pixels)<br>
+&nbsp;&nbsp;height&nbsp;(int)&nbsp;-&nbsp;height&nbsp;of&nbsp;the&nbsp;rectangle&nbsp;(in&nbsp;pixels)<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;top&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;rectangle<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;top&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;rectangle<br>
+&nbsp;&nbsp;acolor&nbsp;(Color,&nbsp;int,&nbsp;str,&nbsp;tuple)&nbsp;-&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;rectangle<br>
+&nbsp;&nbsp;linew&nbsp;(int)&nbsp;-&nbsp;width&nbsp;of&nbsp;the&nbsp;outline&nbsp;of&nbsp;the&nbsp;rectangle<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-addRectFilled"><strong>addRectFilled</strong></a>(self, width, height, x, y, acolor='red')</dt><dd><span class="code">Draws&nbsp;a&nbsp;filled&nbsp;rectangle&nbsp;onto&nbsp;a&nbsp;given&nbsp;surface<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;width&nbsp;(int)&nbsp;-&nbsp;width&nbsp;of&nbsp;the&nbsp;rectangle&nbsp;(in&nbsp;pixels)<br>
+&nbsp;&nbsp;height&nbsp;(int)&nbsp;-&nbsp;height&nbsp;of&nbsp;the&nbsp;rectangle&nbsp;(in&nbsp;pixels)<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;top&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;rectangle<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;top&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;rectangle<br>
+&nbsp;&nbsp;acolor&nbsp;(Color,&nbsp;int,&nbsp;str,&nbsp;tuple)&nbsp;-&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;rectangle<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-close"><strong>close</strong></a>(self)</dt><dd><span class="code">Closes&nbsp;image</span></dd></dl>
+
+<dl><dt><a name="Picture-copyInto"><strong>copyInto</strong></a>(self, dest, x, y)</dt><dd><span class="code">Copies&nbsp;a&nbsp;given&nbsp;image&nbsp;onto&nbsp;another&nbsp;image<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;dest&nbsp;(<a href="#Picture">Picture</a>)&nbsp;-&nbsp;picture&nbsp;where&nbsp;the&nbsp;image&nbsp;is&nbsp;to&nbsp;be&nbsp;copied<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;image<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;image<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-display"><strong>display</strong></a>(self, title=None)</dt><dd><span class="code">Display&nbsp;the&nbsp;given&nbsp;image&nbsp;until&nbsp;user&nbsp;close&nbsp;the&nbsp;window<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;title&nbsp;(string)&nbsp;-&nbsp;title&nbsp;of&nbsp;the&nbsp;image<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-getAllLocations"><strong>getAllLocations</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;coordinates&nbsp;of&nbsp;all&nbsp;the&nbsp;pixels&nbsp;in&nbsp;a&nbsp;picture<br>
+(moving&nbsp;up&nbsp;to&nbsp;down,&nbsp;left&nbsp;to&nbsp;right)</span></dd></dl>
+
+<dl><dt><a name="Picture-getBlue"><strong>getBlue</strong></a>(self, x, y)</dt><dd><span class="code">Returns&nbsp;the&nbsp;blue&nbsp;value&nbsp;of&nbsp;a&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;value&nbsp;of&nbsp;blue</span></dd></dl>
+
+<dl><dt><a name="Picture-getColor"><strong>getColor</strong></a>(self, x, y)</dt><dd><span class="code">Gets&nbsp;the&nbsp;color&nbsp;(RGBA)&nbsp;of&nbsp;a&nbsp;pixel&nbsp;&nbsp;<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;color&nbsp;of&nbsp;the&nbsp;pixel</span></dd></dl>
+
+<dl><dt><a name="Picture-getColorRGB"><strong>getColorRGB</strong></a>(self, x, y)</dt><dd><span class="code">Gets&nbsp;the&nbsp;RGB&nbsp;values&nbsp;of&nbsp;the&nbsp;color&nbsp;of&nbsp;a&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;the&nbsp;R,&nbsp;G,&nbsp;B&nbsp;values&nbsp;of&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;pixel</span></dd></dl>
+
+<dl><dt><a name="Picture-getGreen"><strong>getGreen</strong></a>(self, x, y)</dt><dd><span class="code">Returns&nbsp;the&nbsp;green&nbsp;value&nbsp;of&nbsp;a&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;value&nbsp;of&nbsp;green</span></dd></dl>
+
+<dl><dt><a name="Picture-getHeight"><strong>getHeight</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;the&nbsp;height&nbsp;of&nbsp;an&nbsp;image</span></dd></dl>
+
+<dl><dt><a name="Picture-getMagnification"><strong>getMagnification</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;the&nbsp;magnification&nbsp;of&nbsp;an&nbsp;image</span></dd></dl>
+
+<dl><dt><a name="Picture-getPixel"><strong>getPixel</strong></a>(self, x, y)</dt><dd><span class="code">Returns&nbsp;the&nbsp;pixel&nbsp;at&nbsp;(x,&nbsp;y)&nbsp;in&nbsp;a&nbsp;picture</span></dd></dl>
+
+<dl><dt><a name="Picture-getPixels"><strong>getPixels</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;a&nbsp;list&nbsp;with&nbsp;all&nbsp;the&nbsp;pixels&nbsp;in&nbsp;a&nbsp;picture<br>
+(moving&nbsp;up&nbsp;to&nbsp;down,&nbsp;left&nbsp;to&nbsp;right)</span></dd></dl>
+
+<dl><dt><a name="Picture-getRed"><strong>getRed</strong></a>(self, x, y)</dt><dd><span class="code">Returns&nbsp;the&nbsp;red&nbsp;value&nbsp;of&nbsp;a&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;value&nbsp;of&nbsp;red</span></dd></dl>
+
+<dl><dt><a name="Picture-getWidth"><strong>getWidth</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;the&nbsp;width&nbsp;of&nbsp;an&nbsp;image</span></dd></dl>
+
+<dl><dt><a name="Picture-magnify"><strong>magnify</strong></a>(self, title=None)</dt><dd><span class="code">Magnifies&nbsp;a&nbsp;given&nbsp;image<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;None<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-repaint"><strong>repaint</strong></a>(self)</dt><dd><span class="code">Updates&nbsp;an&nbsp;image</span></dd></dl>
+
+<dl><dt><a name="Picture-save"><strong>save</strong></a>(self, filename)</dt><dd><span class="code">save&nbsp;this&nbsp;image&nbsp;into&nbsp;a&nbsp;file<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;filename&nbsp;-&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;file&nbsp;where&nbsp;the&nbsp;image&nbsp;is&nbsp;to&nbsp;be&nbsp;saved<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-setBlue"><strong>setBlue</strong></a>(self, x, y, blue)</dt><dd><span class="code">Sets&nbsp;the&nbsp;blue&nbsp;value&nbsp;of&nbsp;a&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;blue&nbsp;(int)&nbsp;-&nbsp;the&nbsp;blue&nbsp;value&nbsp;to&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-setColor"><strong>setColor</strong></a>(self, x, y, color)</dt><dd><span class="code">Sets&nbsp;the&nbsp;color&nbsp;of&nbsp;a&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;color&nbsp;(Color)&nbsp;-&nbsp;the&nbsp;color&nbsp;the&nbsp;pixel&nbsp;will&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-setGreen"><strong>setGreen</strong></a>(self, x, y, green)</dt><dd><span class="code">Sets&nbsp;the&nbsp;green&nbsp;value&nbsp;of&nbsp;a&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;green&nbsp;(int)&nbsp;-&nbsp;the&nbsp;green&nbsp;value&nbsp;to&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-setMagnification"><strong>setMagnification</strong></a>(self, magnification)</dt><dd><span class="code">Sets&nbsp;the&nbsp;magnification&nbsp;for&nbsp;an&nbsp;image<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;magnification&nbsp;(int,&nbsp;float)&nbsp;-&nbsp;magnification&nbsp;to&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-setRed"><strong>setRed</strong></a>(self, x, y, red)</dt><dd><span class="code">Sets&nbsp;the&nbsp;red&nbsp;value&nbsp;of&nbsp;a&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;x&nbsp;(int)&nbsp;-&nbsp;the&nbsp;x&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;y&nbsp;(int)&nbsp;-&nbsp;the&nbsp;y&nbsp;position&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;&nbsp;red&nbsp;(int)&nbsp;-&nbsp;the&nbsp;red&nbsp;value&nbsp;to&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Picture-show"><strong>show</strong></a>(self, title=None)</dt><dd><span class="code">Shows&nbsp;the&nbsp;given&nbsp;image<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;title&nbsp;(string)&nbsp;-&nbsp;title&nbsp;of&nbsp;the&nbsp;image<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>autoUpdate</strong> = &lt;GCPictureTools.autoUpdate object&gt;</dl>
+
+<dl><dt><strong>image</strong> = None</dl>
+
+<dl><dt><strong>magnification</strong> = 1</dl>
+
+<dl><dt><strong>size</strong> = None</dl>
+
+<dl><dt><strong>title</strong> = ''</dl>
+
+<dl><dt><strong>window</strong> = None</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="Pixel">class <strong>Pixel</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#Pixel">Pixel</a>(picture,&nbsp;x,&nbsp;y)<br>
+&nbsp;<br>
+<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="Pixel-__init__"><strong>__init__</strong></a>(self, picture, x, y)</dt><dd><span class="code">Initializer<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;picture:&nbsp;picture&nbsp;that&nbsp;contains&nbsp;this&nbsp;pixel<br>
+&nbsp;&nbsp;x:&nbsp;column&nbsp;index<br>
+&nbsp;&nbsp;y:&nbsp;row&nbsp;index<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;a&nbsp;pixel&nbsp;instance&nbsp;at&nbsp;(x,&nbsp;y)&nbsp;in&nbsp;picture</span></dd></dl>
+
+<dl><dt><a name="Pixel-getBlue"><strong>getBlue</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;the&nbsp;blue&nbsp;value&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;none<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;value&nbsp;of&nbsp;blue</span></dd></dl>
+
+<dl><dt><a name="Pixel-getColor"><strong>getColor</strong></a>(self)</dt><dd><span class="code">Gets&nbsp;the&nbsp;color&nbsp;(RGBA)&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;none<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;color&nbsp;of&nbsp;the&nbsp;pixel</span></dd></dl>
+
+<dl><dt><a name="Pixel-getColorRGB"><strong>getColorRGB</strong></a>(self)</dt><dd><span class="code">Gets&nbsp;the&nbsp;RGB&nbsp;values&nbsp;of&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;none<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;the&nbsp;R,&nbsp;G,&nbsp;B&nbsp;values&nbsp;of&nbsp;the&nbsp;color&nbsp;of&nbsp;this&nbsp;pixel</span></dd></dl>
+
+<dl><dt><a name="Pixel-getGreen"><strong>getGreen</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;the&nbsp;green&nbsp;value&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;none<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;value&nbsp;of&nbsp;green</span></dd></dl>
+
+<dl><dt><a name="Pixel-getPicture"><strong>getPicture</strong></a>(self)</dt><dd><span class="code">Gets&nbsp;the&nbsp;picture&nbsp;the&nbsp;pixel&nbsp;is&nbsp;part&nbsp;of<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;none<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;the&nbsp;<a href="#Picture">Picture</a>&nbsp;<a href="builtins.html#object">object</a>&nbsp;of&nbsp;the&nbsp;pixel</span></dd></dl>
+
+<dl><dt><a name="Pixel-getRed"><strong>getRed</strong></a>(self)</dt><dd><span class="code">Returns&nbsp;the&nbsp;red&nbsp;value&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;none<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;value&nbsp;of&nbsp;red</span></dd></dl>
+
+<dl><dt><a name="Pixel-getX"><strong>getX</strong></a>(self)</dt><dd><span class="code">Gets&nbsp;the&nbsp;column&nbsp;index&nbsp;(x)&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;none<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;column&nbsp;index&nbsp;(nonnegative&nbsp;integer)</span></dd></dl>
+
+<dl><dt><a name="Pixel-getY"><strong>getY</strong></a>(self)</dt><dd><span class="code">Gets&nbsp;the&nbsp;row&nbsp;index&nbsp;(y)&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;none<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;row&nbsp;index&nbsp;(nonnegative&nbsp;integer)</span></dd></dl>
+
+<dl><dt><a name="Pixel-setBlue"><strong>setBlue</strong></a>(self, blue)</dt><dd><span class="code">Sets&nbsp;the&nbsp;blue&nbsp;value&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;blue&nbsp;(int)&nbsp;-&nbsp;the&nbsp;blue&nbsp;value&nbsp;to&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Pixel-setColor"><strong>setColor</strong></a>(self, color)</dt><dd><span class="code">Sets&nbsp;the&nbsp;color&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;color&nbsp;(Color)&nbsp;-&nbsp;the&nbsp;color&nbsp;the&nbsp;pixel&nbsp;will&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Pixel-setGreen"><strong>setGreen</strong></a>(self, green)</dt><dd><span class="code">Sets&nbsp;the&nbsp;green&nbsp;value&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;green&nbsp;(int)&nbsp;-&nbsp;the&nbsp;green&nbsp;value&nbsp;to&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<dl><dt><a name="Pixel-setRed"><strong>setRed</strong></a>(self, red)</dt><dd><span class="code">Sets&nbsp;the&nbsp;red&nbsp;value&nbsp;of&nbsp;the&nbsp;pixel<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;red&nbsp;(int)&nbsp;-&nbsp;the&nbsp;red&nbsp;value&nbsp;to&nbsp;be&nbsp;set<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;Nothing</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="autoUpdate">class <strong>autoUpdate</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">#boolean&nbsp;for&nbsp;if&nbsp;changes&nbsp;should&nbsp;update&nbsp;automatically&nbsp;or&nbsp;not<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="autoUpdate-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">Initializer&nbsp;function</span></dd></dl>
+
+<dl><dt><a name="autoUpdate-getAutoUpdate"><strong>getAutoUpdate</strong></a>(self)</dt><dd><span class="code">Getter</span></dd></dl>
+
+<dl><dt><a name="autoUpdate-setAutoUpdate"><strong>setAutoUpdate</strong></a>(self, status)</dt><dd><span class="code">Setter</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>autoUpdateBool</strong> = False</dl>
+
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-demo"><strong>demo</strong></a>()</dt><dd><span class="code">Demo&nbsp;the&nbsp;basic&nbsp;usage&nbsp;of&nbsp;these&nbsp;tools.<br>
+Display&nbsp;4&nbsp;different&nbsp;graphic&nbsp;images<br>
+Hit&nbsp;enter&nbsp;key&nbsp;to&nbsp;change&nbsp;to&nbsp;the&nbsp;next,&nbsp;and&nbsp;to&nbsp;exit</span></dd></dl>
+ <dl><dt><a name="-makeLighter"><strong>makeLighter</strong></a>(color: pygame.color.Color, f: float = 1.15)</dt><dd><span class="code">Sample&nbsp;function&nbsp;to&nbsp;make&nbsp;given&nbsp;picture&nbsp;lighter<br>
+Shade&nbsp;up&nbsp;by&nbsp;1.15,&nbsp;but&nbsp;don't&nbsp;go&nbsp;over&nbsp;255&nbsp;for&nbsp;each&nbsp;value</span></dd></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>black</strong> = (0, 0, 0, 255)<br>
+<strong>blue</strong> = (0, 0, 255, 255)<br>
+<strong>cyan</strong> = (0, 255, 255, 255)<br>
+<strong>green</strong> = (0, 255, 0, 255)<br>
+<strong>magenta</strong> = (255, 0, 255, 255)<br>
+<strong>red</strong> = (255, 0, 0, 255)<br>
+<strong>white</strong> = (255, 255, 255, 255)<br>
+<strong>yellow</strong> = (255, 255, 0, 255)</td></tr></table>
+</body></html>
